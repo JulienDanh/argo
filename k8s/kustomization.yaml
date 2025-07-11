@@ -8,9 +8,4 @@ resources:
 - pre-sync-hook.yaml
 - deployment.yaml
 - service.yaml
-- ingress.yaml
-
-labels:
-- pairs:
-    app: fastapi-app
-    version: v1.0.0 
+- ingress.yaml 

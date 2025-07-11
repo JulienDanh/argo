@@ -8,6 +8,7 @@ metadata:
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
   labels:
     app: fastapi-app
+    version: v1.0.0
 spec:
   template:
     spec:

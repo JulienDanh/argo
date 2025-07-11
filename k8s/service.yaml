@@ -5,6 +5,7 @@ metadata:
   namespace: fastapi-app
   labels:
     app: fastapi-app
+    version: v1.0.0
 spec:
   type: ClusterIP
   ports:
