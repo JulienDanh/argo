@@ -1,0 +1,37 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+# Single node cluster configuration
+nodes:
+  - role: control-plane
+    # Expose port 80 and 443 to the host
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP
+      # Expose additional ports for common services
+      - containerPort: 30000
+        hostPort: 30000
+        protocol: TCP
+      - containerPort: 30001
+        hostPort: 30001
+        protocol: TCP
+
+# Configure kubeadm with specific settings
+kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+
+# Configure containerd to use the host's Docker daemon
+containerdConfigPatches:
+  - |
+    [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+        SystemdCgroup = true
+
