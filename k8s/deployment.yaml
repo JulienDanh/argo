@@ -25,6 +25,8 @@ spec:
           env:
             - name: ENVIRONMENT
               value: "production"
+            - name: DEPLOYMENT_VERSION
+              value: "v1.0.1"
           resources:
             requests:
               memory: "64Mi"
