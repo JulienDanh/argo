@@ -134,10 +134,10 @@ The repository includes a simple FastAPI application with basic endpoints.
 app/
 ├── main.py          # FastAPI application
 ├── requirements.txt # Python dependencies
-└── Dockerfile      # Container configuration
-hooks/
-├── pre-sync.py     # Pre-sync hook script
-└── requirements.txt # Hook dependencies
+├── Dockerfile      # Container configuration
+└── hooks/
+    ├── pre-sync.py     # Pre-sync hook script
+    └── requirements.txt # Hook dependencies
 ```
 
 ### API Endpoints
