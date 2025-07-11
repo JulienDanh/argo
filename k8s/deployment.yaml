@@ -15,10 +15,10 @@ spec:
       labels:
         app: fastapi-app
     spec:
-            containers:
-      - name: fastapi-app
-        image: fastapi-app:latest
-        imagePullPolicy: Never
+      containers:
+        - name: fastapi-app
+          image: fastapi-app:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 8000
           env:
