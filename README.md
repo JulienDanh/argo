@@ -148,10 +148,12 @@ app/
 ./deploy-app.sh full
 ```
 This will:
-1. Build the Docker image
-2. Load it into the KIND cluster
+1. Build the Docker image locally
+2. Load it into the KIND cluster (so it can be found)
 3. Create an ArgoCD application
 4. ArgoCD will automatically deploy the app
+
+**Important**: The deployment uses `imagePullPolicy: Never` to ensure it uses the local image loaded into KIND.
 
 #### Option 2: Deploy Manually
 ```bash

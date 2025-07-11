@@ -48,6 +48,7 @@ deploy_with_argocd() {
     
     echo "ArgoCD application created!"
     echo "Check ArgoCD UI to see the deployment status"
+    echo "Note: Make sure the Docker image is loaded into KIND cluster first!"
 }
 
 # Function to deploy manually (without ArgoCD)
@@ -73,6 +74,9 @@ show_status() {
     echo ""
     echo "Ingress:"
     kubectl get ingress -n $APP_NAME
+    echo ""
+    echo "Image in KIND cluster:"
+    docker exec kind-$CLUSTER_NAME-control-plane crictl images | grep $APP_NAME || echo "Image not found in cluster"
 }
 
 # Function to port forward to the app
