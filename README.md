@@ -137,6 +137,7 @@ app/
 ├── Dockerfile      # Container configuration
 └── hooks/
     ├── pre-sync.py     # Pre-sync hook script
+    ├── post-sync.py    # Post-sync hook script
     └── requirements.txt # Hook dependencies
 ```
 
@@ -149,6 +150,13 @@ The application includes a pre-sync hook that runs before deployment:
 - **Purpose**: Executes before the FastAPI app is deployed
 - **Command**: `python hooks/pre-sync.py hello`
 - **Output**: Prints "Hello World from pre-sync hook!" with timestamp
+- **Test locally**: `./test-hook.sh`
+
+### Post-Sync Hook
+The application includes a post-sync hook that runs after deployment:
+- **Purpose**: Executes after the FastAPI app is deployed
+- **Command**: `python hooks/post-sync.py complete`
+- **Output**: Prints deployment completion message with timestamp
 - **Test locally**: `./test-hook.sh`
 
 ### Deployment Options

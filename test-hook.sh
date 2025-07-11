@@ -1,16 +1,22 @@
 #!/bin/bash
 
-# Test script for the pre-sync hook
+# Test script for the pre-sync and post-sync hooks
 
 echo "Testing pre-sync hook locally..."
-
-# Test the hook script directly
-echo "Running hook script:"
+echo "Running pre-sync hook script:"
 python app/hooks/pre-sync.py hello
 
 echo ""
-echo "Testing health command:"
-python app/hooks/pre-sync.py health
+echo "Testing post-sync hook locally..."
+echo "Running post-sync hook script:"
+python app/hooks/post-sync.py complete
 
 echo ""
-echo "Hook test completed!" 
+echo "Testing health commands:"
+echo "Pre-sync health:"
+python app/hooks/pre-sync.py health
+echo "Post-sync health:"
+python app/hooks/post-sync.py health
+
+echo ""
+echo "Hook tests completed!" 

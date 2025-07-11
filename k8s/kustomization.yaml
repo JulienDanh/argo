@@ -8,4 +8,5 @@ resources:
 - pre-sync-hook.yaml
 - deployment.yaml
 - service.yaml
-- ingress.yaml 
+- ingress.yaml
+- post-sync-hook.yaml 
