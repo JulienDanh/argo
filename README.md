@@ -9,7 +9,7 @@ Before using this configuration, make sure you have the following installed:
 - **Docker**: Make sure Docker is running on your system
 - **KIND**: Install KIND using one of the following methods:
   - **macOS**: `brew install kind`
-  - **Linux**: 
+  - **Linux**:
     ```bash
     curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
     chmod +x ./kind
@@ -21,16 +21,19 @@ Before using this configuration, make sure you have the following installed:
 ## Quick Start
 
 1. **Make the scripts executable**:
+
    ```bash
    chmod +x start-cluster.sh install-argocd.sh
    ```
 
 2. **Create and start the cluster**:
+
    ```bash
    ./start-cluster.sh create
    ```
 
 3. **Install ArgoCD**:
+
    ```bash
    ./install-argocd.sh install
    ```
@@ -44,6 +47,7 @@ Before using this configuration, make sure you have the following installed:
 ## Available Commands
 
 ### Cluster Management (`start-cluster.sh`)
+
 - `create` - Create a new cluster
 - `start` - Start an existing cluster
 - `stop` - Stop the cluster
@@ -54,6 +58,7 @@ Before using this configuration, make sure you have the following installed:
 - `help` - Show help message
 
 ### ArgoCD Management (`install-argocd.sh`)
+
 - `install` - Install ArgoCD on the cluster
 - `password` - Get the admin password
 - `ui` - Start port forwarding for ArgoCD UI
@@ -74,11 +79,13 @@ The cluster is configured with:
 Once the cluster is created, you can:
 
 1. **Set the kubectl context**:
+
    ```bash
    kubectl config use-context kind-argo-cluster
    ```
 
 2. **Deploy applications**:
+
    ```bash
    kubectl apply -f your-manifest.yaml
    ```
@@ -93,16 +100,19 @@ Once the cluster is created, you can:
 After installing ArgoCD:
 
 1. **Get the admin password**:
+
    ```bash
    ./install-argocd.sh password
    ```
 
 2. **Start the UI**:
+
    ```bash
    ./install-argocd.sh ui
    ```
 
 3. **Access ArgoCD UI**:
+
    - URL: http://localhost:8080
    - Username: `admin`
    - Password: (use the command above to get it)
