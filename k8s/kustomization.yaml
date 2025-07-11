@@ -5,10 +5,12 @@ namespace: fastapi-app
 
 resources:
 - namespace.yaml
+- pre-sync-hook.yaml
 - deployment.yaml
 - service.yaml
 - ingress.yaml
 
-commonLabels:
-  app: fastapi-app
-  version: v1.0.0 
+labels:
+- pairs:
+    app: fastapi-app
+    version: v1.0.0 

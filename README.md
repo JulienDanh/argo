@@ -135,11 +135,21 @@ app/
 ├── main.py          # FastAPI application
 ├── requirements.txt # Python dependencies
 └── Dockerfile      # Container configuration
+hooks/
+├── pre-sync.py     # Pre-sync hook script
+└── requirements.txt # Hook dependencies
 ```
 
 ### API Endpoints
 - `GET /` - Hello World message
 - `GET /health` - Health check endpoint
+
+### Pre-Sync Hook
+The application includes a pre-sync hook that runs before deployment:
+- **Purpose**: Executes before the FastAPI app is deployed
+- **Command**: `python hooks/pre-sync.py hello`
+- **Output**: Prints "Hello World from pre-sync hook!" with timestamp
+- **Test locally**: `./test-hook.sh`
 
 ### Deployment Options
 

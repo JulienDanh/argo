@@ -23,9 +23,7 @@ check_cluster() {
 # Function to build Docker image
 build_image() {
     echo "Building Docker image for FastAPI app..."
-    cd app
-    docker build -t $APP_NAME:latest .
-    cd ..
+    docker build -t $APP_NAME:latest -f app/Dockerfile .
     echo "Docker image built successfully!"
 }
 

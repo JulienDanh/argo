@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pre-sync-hook
+  namespace: fastapi-app
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+  labels:
+    app: fastapi-app
+spec:
+  template:
+    spec:
+      containers:
+      - name: pre-sync-hook
+        image: fastapi-app:latest
+        imagePullPolicy: Never
+        command: ["python", "/app/hooks/pre-sync.py", "hello"]
+        env:
+        - name: PYTHONPATH
+          value: "/app"
+      restartPolicy: Never
+  backoffLimit: 3 
