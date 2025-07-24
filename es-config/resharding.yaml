@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: apply-config
+  name: resharding
   namespace: es-config
   annotations:
     argocd.argoproj.io/hook: PostSync
