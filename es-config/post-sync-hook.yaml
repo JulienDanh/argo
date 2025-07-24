@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: post-sync-hook
+  name: apply-config
   namespace: es-config
   annotations:
     argocd.argoproj.io/hook: PostSync
@@ -12,7 +12,7 @@ spec:
   template:
     spec:
       containers:
-        - name: post-sync-hook
+        - name: apply-config
           image: fastapi-app:latest
           imagePullPolicy: Never
           command: ["python", "/app/hooks/post-sync.py", "complete"]
