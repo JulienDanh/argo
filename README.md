@@ -9,7 +9,7 @@ Before using this configuration, make sure you have the following installed:
 - **Docker**: Make sure Docker is running on your system
 - **KIND**: Install KIND using one of the following methods:
   - **macOS**: `brew install kind`
-  - **Linux**: 
+  - **Linux**:
     ```bash
     curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
     chmod +x ./kind
@@ -21,21 +21,25 @@ Before using this configuration, make sure you have the following installed:
 ## Quick Start
 
 1. **Make the scripts executable**:
+
    ```bash
    chmod +x start-cluster.sh install-argocd.sh deploy-app.sh
    ```
 
 2. **Create and start the cluster**:
+
    ```bash
    ./start-cluster.sh create
    ```
 
 3. **Install ArgoCD**:
+
    ```bash
    ./install-argocd.sh install
    ```
 
 4. **Build and deploy the FastAPI app**:
+
    ```bash
    ./deploy-app.sh full
    ```
@@ -47,6 +51,7 @@ Before using this configuration, make sure you have the following installed:
 ## Available Commands
 
 ### Cluster Management (`start-cluster.sh`)
+
 - `create` - Create a new cluster
 - `start` - Start an existing cluster
 - `stop` - Stop the cluster
@@ -57,6 +62,7 @@ Before using this configuration, make sure you have the following installed:
 - `help` - Show help message
 
 ### ArgoCD Management (`install-argocd.sh`)
+
 - `install` - Install ArgoCD on the cluster
 - `password` - Get the admin password
 - `ui` - Start port forwarding for ArgoCD UI
@@ -64,6 +70,7 @@ Before using this configuration, make sure you have the following installed:
 - `help` - Show help message
 
 ### FastAPI App Management (`deploy-app.sh`)
+
 - `build` - Build Docker image
 - `load` - Load image into KIND cluster
 - `deploy` - Deploy with ArgoCD
@@ -87,11 +94,13 @@ The cluster is configured with:
 Once the cluster is created, you can:
 
 1. **Set the kubectl context**:
+
    ```bash
    kubectl config use-context kind-argo-cluster
    ```
 
 2. **Deploy applications**:
+
    ```bash
    kubectl apply -f your-manifest.yaml
    ```
@@ -106,16 +115,19 @@ Once the cluster is created, you can:
 After installing ArgoCD:
 
 1. **Get the admin password**:
+
    ```bash
    ./install-argocd.sh password
    ```
 
 2. **Start the UI**:
+
    ```bash
    ./install-argocd.sh ui
    ```
 
 3. **Access ArgoCD UI**:
+
    - URL: http://localhost:8080
    - Username: `admin`
    - Password: (use the command above to get it)
@@ -130,6 +142,7 @@ After installing ArgoCD:
 The repository includes a simple FastAPI application with basic endpoints.
 
 ### Application Structure
+
 ```
 app/
 ├── main.py          # FastAPI application
@@ -142,18 +155,23 @@ app/
 ```
 
 ### API Endpoints
+
 - `GET /` - Hello World message
 - `GET /health` - Health check endpoint
 
 ### Pre-Sync Hook
+
 The application includes a pre-sync hook that runs before deployment:
+
 - **Purpose**: Executes before the FastAPI app is deployed
 - **Command**: `python hooks/pre-sync.py hello`
 - **Output**: Prints "Hello World from pre-sync hook!" with timestamp
 - **Test locally**: `./test-hook.sh`
 
 ### Post-Sync Hook
+
 The application includes a post-sync hook that runs after deployment:
+
 - **Purpose**: Executes after the FastAPI app is deployed
 - **Command**: `python hooks/post-sync.py complete`
 - **Output**: Prints deployment completion message with timestamp
@@ -162,10 +180,13 @@ The application includes a post-sync hook that runs after deployment:
 ### Deployment Options
 
 #### Option 1: Deploy with ArgoCD (Recommended)
+
 ```bash
 ./deploy-app.sh full
 ```
+
 This will:
+
 1. Build the Docker image locally
 2. Load it into the KIND cluster (so it can be found)
 3. Create an ArgoCD application
@@ -174,6 +195,7 @@ This will:
 **Important**: The deployment uses `imagePullPolicy: Never` to ensure it uses the local image loaded into KIND.
 
 #### Option 2: Deploy Manually
+
 ```bash
 ./deploy-app.sh build
 ./deploy-app.sh load
@@ -193,6 +215,7 @@ Then open http://localhost:30000 in your browser.
 ### Application Status
 
 Check the application status:
+
 ```bash
 ./deploy-app.sh status
 ```
@@ -207,6 +230,7 @@ The FastAPI application is configured for GitOps with ArgoCD:
 4. **Self-Healing**: ArgoCD automatically corrects drift from the desired state
 
 To update the application:
+
 1. Make changes to the code or manifests
 2. Commit and push to the repository
 3. ArgoCD will automatically detect and apply the changes
